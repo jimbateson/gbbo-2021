@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "a11y-dialog": "^7.3.0",
     "astro": "^0.20.5"
   }
 }

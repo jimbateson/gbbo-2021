@@ -1,0 +1,50 @@
+---
+import data from '../../data/bakers.json';
+import BakerModal from './BakerModal.astro';
+---
+<ul class="bakers">
+    {data.map((baker) => (
+        <li class="bakers__item">
+            <h4>{baker.bakerName}, {baker.bakerAge}</h4>
+            <h5>{baker.bakerJob}</h5>
+            <p>{baker.bakerInfo}</p>
+
+            <dl>
+                <dt>Star Baker</dt>
+                <dd>{baker.starBaker}</dd>
+
+                <dt>Innuendo</dt>
+                <dd>{baker.bakerInnuendo}</dd>
+
+                <dt>Hollywood Handshake</dt>
+                <dd>{baker.hollywoodHandshake}</dd>
+            </dl>
+        </li>
+    ))}
+</ul>
+
+<div
+  class="dialog-container"
+  aria-hidden="true"
+  data-a11y-dialog="your-dialog-id"
+>
+  …
+</div>
+
+<style>
+    .bakers {
+        display: grid;
+        gap: 5rem;
+        grid-template-columns: 1fr 1fr;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .bakers__item {
+        border-radius: var(--base-radius);
+        box-shadow: 1rem 1rem 0 0 var(--color-primary);
+        background-color: var(--color-light);
+        padding: 1rem;
+    }
+</style>

@@ -1,6 +1,6 @@
 ---
-// You can import components from any supported Framework here!
-import BakersGrid from '../components/Bakers/BakersGrid.astro';
+import Bakers from '../components/Bakers/Bakers.astro';
+import Stroke from '../components/Stroke.astro';
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -22,10 +22,10 @@ let title = 'GBBO 2021';
     <link rel="stylesheet" href="/style/reset.css">
     <link rel="stylesheet" href="/style/global.css">
 </head>
-<body>
+<body class="page">
     <main>
         <header>
-            <div>
+            <div class="wrapper">
                 <img width="240" height="105" src="/assets/logo.svg" class="logo" alt="">
                 
                 <div>
@@ -33,12 +33,56 @@ let title = 'GBBO 2021';
                     <h2>Keep track of the bakers, find out more about them, who won star baker, and the theme for each week.</h2>
                     <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="header__blob"><path d="M141.5 58.3C157.5 74.5 176.8 87.3 177.7 100.9C178.6 114.5 161.1 129 145.1 140.3C129 151.6 114.5 159.6 98.8998 160.7C83.2998 161.8 66.5998 156 53.6998 144.7C40.8998 133.4 31.9998 116.7 30.1998 98.2C28.3998 79.6 33.6998 59.3 46.4998 43.1C59.2998 26.9 79.5998 14.8 96.1998 18.6C112.7 22.5 125.5 42.1 141.5 58.3Z" fill="var(--color-accent)" fill-opacity="0.75"></path></svg>
                 </div>
-                <h3>Week 1</h3>
+                <h3>Week 1—Test theme</h3>
             </div>
         </header>
 
-        <BakersGrid />
+        <div class="wrapper">
+            <Bakers />
+        </div>
 
+        <Stroke />
+
+        <footer>
+            <p>Something pointless from <a href="https://jamesbateson.co.uk/" rel="noreferrer">James Bateson</a></p>
+        </footer>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.from(".stroke", {
+            '--dashOffset': 1000,
+            delay: 1,
+            scrollTrigger: {
+                trigger: '#page',
+                start: '-5% top',
+                end: 'bottom+=20% bottom',
+                scrub: 1
+            }
+        });
+
+        const path = document.querySelector('.mask-stroke');
+        const pathLength = path.getTotalLength();
+
+        path.style.strokeDasharray = pathLength + ' ' + pathLength;
+        path.style.strokeDashoffset = pathLength;
+        path.getBoundingClientRect();
+
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+            
+            const drawLength = pathLength * scrollPercentage;
+        
+            path.style.strokeDashoffset = pathLength - drawLength;
+            
+            if (scrollPercentage >= 0.99) {
+                path.style.strokeDasharray = 'none';
+            } else {
+                path.style.strokeDasharray = pathLength + ' ' + pathLength;
+            }
+        });
+    </script>
 </body>
 </html>

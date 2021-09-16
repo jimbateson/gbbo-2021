@@ -9,6 +9,7 @@
 	--color-dark: #111827;
 	--color-primary: #263147;
 	--color-accent: #ffd53d;
+	--base-radius: 0.5rem;
 }
 
 @font-face {
@@ -39,14 +40,13 @@
 }
 
 body {
-	padding: 2rem;
-	width: 100%;
+	background-color: var(--color-bg);
+	color: var(--color-primary);
+	font-family: nunito, sans-serif;
 	min-height: 100vh;
-	display: grid;
-	justify-content: center;
-	background: var(--color-bg);
-	color: var(--color-dark);
-	font-family: nunito;
+	padding: 2rem;
+	position: relative;
+	width: 100%;
 }
 
 h1,
@@ -68,11 +68,22 @@ h2 {
 	max-width: 35ch;
 }
 
+h3 {
+	border-bottom: 1px solid var(--color-primary);
+	font-size: 1.7rem;
+	padding-bottom: 1rem;
+}
+
+.wrapper {
+	margin-inline: auto;
+	max-width: 55rem;
+}
+
 .logo {
 	margin: 0 auto;
 }
 
-header {
+header > div {
 	position: relative;
 }
 
@@ -83,4 +94,9 @@ header {
 	transform: translateY(-50%);
 	top: 50%;
 	z-index: -1;
+}
+
+footer {
+	padding: 2rem;
+	text-align: center;
 }

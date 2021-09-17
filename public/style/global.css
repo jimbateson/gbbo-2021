@@ -6,9 +6,11 @@
 :root {
 	--color-bg: #f4f2ed;
 	--color-light: #fff;
-	--color-dark: #111827;
-	--color-primary: #263147;
+	--color-dark: #4a4a4a;
+	--color-grey-light: #e6e6e6;
+	--color-primary: #5a3b5d;
 	--color-accent: #ffd53d;
+	--color-accent-shade: #e1d4b1;
 	--base-radius: 0.5rem;
 }
 
@@ -41,7 +43,7 @@
 
 body {
 	background-color: var(--color-bg);
-	color: var(--color-primary);
+	color: var(--color-dark);
 	font-family: nunito, sans-serif;
 	min-height: 100vh;
 	padding: 2rem;
@@ -69,7 +71,6 @@ h2 {
 }
 
 h3 {
-	border-bottom: 1px solid var(--color-primary);
 	font-size: 1.7rem;
 	padding-bottom: 1rem;
 }
@@ -84,7 +85,26 @@ h3 {
 }
 
 header > div {
+	padding-bottom: 2.5rem;
 	position: relative;
+}
+
+header > div:after {
+	background: repeating-linear-gradient(
+		-45deg,
+		hsla(0, 0%, 100%, 0),
+		hsla(0, 0%, 100%, 0) 6px,
+		var(--color-accent-shade) 0,
+		var(--color-accent-shade) 8px
+	);
+	bottom: 2.45rem;
+	content: '';
+	display: block;
+	height: 0.85rem;
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+	width: 105%;
 }
 
 .header__blob {
@@ -97,6 +117,6 @@ header > div {
 }
 
 footer {
-	padding: 2rem;
+	padding: 2rem 2rem 0;
 	text-align: center;
 }

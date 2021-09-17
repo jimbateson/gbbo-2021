@@ -4,24 +4,33 @@ import BakerModal from './BakerModal.astro';
 ---
 <ul class="bakers">
     {data.map((baker) => (
-        <li class="bakers__item">
-            <h4>{baker.bakerName}, {baker.bakerAge}</h4>
-            <h5>{baker.bakerJob}</h5>
-            <p>{baker.bakerInfo}</p>
+        <li class="bakers-item">
+            <div class="test">
+                <img src={`/assets/${baker.bakerImage}.jpg`} class="bakers-item__image" alt="Profile picture of {baker.bakerName}">
+            </div>
 
-            <dl>
-                <dt>Star Baker</dt>
-                <dd>{baker.starBaker}</dd>
+            <div>
+                <h4>{baker.bakerName}, {baker.bakerAge}</h4>
+                <h5>{baker.bakerJob}</h5>
 
-                <dt>Innuendo</dt>
-                <dd>{baker.bakerInnuendo}</dd>
+                <dl>
+                    <dt>Star Baker</dt>
+                    <dd>{baker.starBaker}</dd>
 
-                <dt>Hollywood Handshake</dt>
-                <dd>{baker.hollywoodHandshake}</dd>
-            </dl>
+                    <dt>Innuendo</dt>
+                    <dd>{baker.bakerInnuendo}</dd>
+
+                    <dt>Hollywood Handshake</dt>
+                    <dd>{baker.hollywoodHandshake}</dd>
+                </dl>
+            </div>
         </li>
     ))}
 </ul>
+
+<svg class="svg">
+    <clipPath id="my-clip-path" clipPathUnits="objectBoundingBox"><path d="M0,0.5 C0,0.29,0.29,0,0.5,0 S1,0.29,1,0.5 S0.71,1,0.5,1 S0,0.71,0,0.5"></path></clipPath>
+</svg>
 
 <div
   class="dialog-container"
@@ -31,20 +40,64 @@ import BakerModal from './BakerModal.astro';
   …
 </div>
 
-<style>
+<style lang="scss">
     .bakers {
-        display: grid;
-        gap: 5rem;
-        grid-template-columns: 1fr 1fr;
         list-style: none;
         margin: 0;
         padding: 0;
     }
 
-    .bakers__item {
+    .bakers-item {
         border-radius: var(--base-radius);
-        box-shadow: 1rem 1rem 0 0 var(--color-primary);
-        background-color: var(--color-light);
         padding: 1rem;
+    }
+
+    .bakers-item__image {
+        clip-path: url(#my-clip-path);
+        object-fit: cover;
+    }
+
+    .test {
+        position: relative;
+
+        &:after {
+            background-color: var(--color-primary);
+            content: '';
+            clip-path: url(#my-clip-path);
+            display: block;
+            height: 105%;
+            left: .25rem;
+            opacity: .5;
+            position: absolute;
+            top: .35rem;
+            width: 105%;
+            z-index: -1;
+        }
+    }
+
+    .svg {
+        height: 0;
+        position: absolute;
+        width: 0;
+    }
+
+    @media (min-width: 768px) {
+        .bakers {
+            > :nth-child(2n) {
+                justify-content: flex-end;
+            }
+        }
+        .bakers-item {
+            align-items: center;
+            display: flex;
+
+            > * + * {
+                margin-left: 2rem;
+            }
+
+            img {
+                max-width: 400px;
+            }
+        }
     }
 </style>

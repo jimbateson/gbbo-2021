@@ -10,7 +10,7 @@
 	--color-grey-light: #e6e6e6;
 	--color-primary: #5a3b5d;
 	--color-accent: #ffd53d;
-	--color-accent-shade: #e1d4b1;
+	--color-accent-shade: #eee1bc;
 	--base-radius: 0.5rem;
 }
 
@@ -80,6 +80,10 @@ h3 {
 	max-width: 55rem;
 }
 
+.warpper--large {
+	max-width: 75rem;
+}
+
 .logo {
 	margin: 0 auto;
 }
@@ -104,7 +108,7 @@ header > div:after {
 	left: 50%;
 	position: absolute;
 	transform: translateX(-50%);
-	width: 105%;
+	width: 115%;
 }
 
 .header__blob {

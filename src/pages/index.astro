@@ -9,11 +9,16 @@ let title = 'GBBO 2021';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>{title}</title>
+    <meta name="description" content="GBBO 2021 fan site from James Bateson.">
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     
     <link rel="stylesheet" href="/style/reset.css">
     <link rel="stylesheet" href="/style/global.css">
+
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-black.woff2" crossorigin/>
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-semibold.woff2" crossorigin/>
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-regular.woff2" crossorigin/>
 </head>
 <body class="page">
     <main>
@@ -30,14 +35,15 @@ let title = 'GBBO 2021';
             </div>
         </header>
 
-        <div class="wrapper">
+        <div class="wrapper warpper--large">
             <Bakers />
         </div>
 
         <Stroke />
 
         <footer>
-            <p>Something pointless from <a href="https://jamesbateson.co.uk/" rel="noreferrer">James Bateson</a></p>
+            <p>Something pointless from <a href="https://jamesbateson.co.uk/" rel="noreferrer">James Bateson</a>.</p>
+            <p> All assets and copy from official GBBO site. Please don't sue my soggy bottom.</p>
         </footer>
     </main>
 
@@ -45,17 +51,6 @@ let title = 'GBBO 2021';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
 
     <script>
-        gsap.from(".stroke", {
-            '--dashOffset': 1000,
-            delay: 1,
-            scrollTrigger: {
-                trigger: '.page',
-                start: '-5% top',
-                end: 'bottom+=20% bottom',
-                scrub: 1
-            }
-        });
-
         const path = document.querySelector('.mask-stroke');
         const pathLength = path.getTotalLength();
 
@@ -77,23 +72,23 @@ let title = 'GBBO 2021';
             }
         }, { passive: true });
 
-//         let images = gsap.utils.toArray(".bakers__item");
-// images.forEach((el) => {
-//   gsap.from(el, {
-//     opacity: 0,
-//     yPercent: 10,
-//     scale: 0,
-//     duration: 1,
-//     ease: 'back',
-//     scrollTrigger: {
-//       trigger: el,
-//       start: "top bottom",
-//       end: "bottom top",
-//       //markers: true,
-//       toggleActions: "restart pause resume pause"
-//     }
-//   });
-// });
+        // let images = gsap.utils.toArray('.bakers-item');
+        // images.forEach((el) => {
+        //     gsap.from(el, {
+        //         opacity: 0,
+        //         yPercent: 10,
+        //         scale: 0,
+        //         duration: 1,
+        //         ease: 'back',
+        //         scrollTrigger: {
+        //         trigger: el,
+        //         start: 'top bottom',
+        //         end: 'bottom top',
+        //         //markers: true,
+        //         toggleActions: 'restart pause resume pause'
+        //         }
+        //     });
+        // });
     </script>
 </body>
 </html>

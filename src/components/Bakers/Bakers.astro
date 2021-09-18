@@ -5,26 +5,37 @@ import {BakerModal} from './BakerModal.jsx';
 <ul class="bakers">
     {data.map((baker) => (
         <li class="bakers-item">
-            <div class="test">
-                <img src={`/assets/${baker.bakerImage}.jpg`} class="bakers-item__image" alt="Profile picture of {baker.bakerName}">
+            <div class="image-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="decorative" aria-hidden="true" viewBox="0 0 133.9 97.5" overflow="visible"><defs><pattern x="-257.8" y="-219" width="8" height="8" patternUnits="userSpaceOnUse" id="dot-pattern" viewBox="0 -8 8 8" overflow="visible"><rect y="-8" width="8" height="8" fill="none"></rect><circle cx="4.3" cy="-4" r=".7" fill="var(--color-primary)" stroke="var(--color-primary)" stroke-miterlimit="10"></circle></pattern></defs><pattern id="SVGID_1_" xlink:href="#dot-pattern" patternTransform="translate(-1.3637 4.2113)"></pattern><rect width="133.9" height="90" fill="url(#SVGID_1_)"></rect></svg>
+                
+                <picture>
+                    <source srcset={`/assets/${baker.bakerImage}.webp`} type="image/webp">
+                    <img src={`/assets/${baker.bakerImage}.jpg`} class="bakers-item__image" alt={`Profile picture of ${baker.bakerName}`} loading="lazy" width="385" height="385">
+                </picture>
             </div>
 
-            <div>
+            <div class="bakers-item__content">
                 <h4>{baker.bakerName}, {baker.bakerAge}</h4>
                 <h5>{baker.bakerJob}</h5>
 
-                <dl>
-                    <dt>Star Baker</dt>
-                    <dd>{baker.starBaker}</dd>
+                <p>{baker.bakerInfo}</p>
 
-                    <dt>Innuendo</dt>
-                    <dd>{baker.bakerInnuendo}</dd>
+                <dl class="bakers-item__stats">
+                    <div>
+                        <dt>Star Baker</dt>
+                        <dd>{baker.starBaker}</dd>
+                    </div>
+                    
+                    <div>
+                        <dt>Innuendos</dt>
+                        <dd>{baker.bakerInnuendo}</dd>
+                    </div>
 
-                    <dt>Hollywood Handshake</dt>
-                    <dd>{baker.hollywoodHandshake}</dd>
+                    <div>
+                        <dt>Hollywood Handshake</dt>
+                        <dd>{baker.hollywoodHandshake}</dd>
+                    </div>
                 </dl>
-
-                <BakerModal client:load />
             </div>
         </li>
     ))}
@@ -51,21 +62,74 @@ import {BakerModal} from './BakerModal.jsx';
         object-fit: cover;
     }
 
-    .test {
+    .bakers-item__content {
+        h4 {
+            font-size: 3rem;
+            margin: 0;
+            position: relative;
+            
+
+            &:after {
+                background: var(--color-accent);
+                bottom: .25em;
+                content: "";
+                height: .4em;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: auto;
+                transform: skew(-8deg);
+                z-index: -1;
+                bottom: .1em;
+                width: clamp(30px,20vw,150px);
+            }
+        }
+
+        h5 {
+            font-size: 1.5em;
+        }
+
+        p {
+            font-weight: 600;
+            margin-top: 1.5rem;
+            max-width: 35ch;
+        }
+    }
+
+    .bakers-item__stats {
+        display: flex;
+        margin-top: 1.25em;
+
+        > * + * {
+            margin-left: 2rem;
+        }
+    }
+
+    .image-wrap {
         position: relative;
 
-        &:after {
-            background-color: var(--color-primary);
-            content: '';
-            clip-path: url(#my-clip-path);
-            display: block;
-            height: 105%;
-            left: .25rem;
-            opacity: .5;
+        &:before {
+            pointer-events: none;
+            content: "";
             position: absolute;
-            top: .35rem;
-            width: 105%;
+            width: 25vw;
+            height: 25vw;
+            min-width: 150px;
+            min-height: 150px;
+            right: -4%;
+            bottom: -6%;
+            border-radius: 100%;
+            border: solid 5px var(--color-accent);
             z-index: -1;
+        }
+
+        svg {
+            border-radius: 50%;
+            bottom: -2rem;
+            clip-path: url(#my-clip-path);
+            position: absolute;
+            right: -3rem;
+            width: 25rem
         }
     }
 
@@ -74,57 +138,6 @@ import {BakerModal} from './BakerModal.jsx';
         position: absolute;
         width: 0;
     }
-
-    /**
- * 1. Make the dialog container, and its child overlay spread across
- *    the entire window.
- */
-.dialog-container,
-.dialog-overlay {
-  position: fixed; /* 1 */
-  top: 0; /* 1 */
-  right: 0; /* 1 */
-  bottom: 0; /* 1 */
-  left: 0; /* 1 */
-}
-
-/**
- * 1. Make sure the dialog container and all its descendants sits on
- *    top of the rest of the page.
- * 2. Make the dialog container a flex container to easily center the
- *    dialog.
- */
-.dialog-container {
-  z-index: 2; /* 1 */
-  display: flex; /* 2 */
-}
-
-/**
- * 1. Make sure the dialog container and all its descendants are not
- *    visible and not focusable when it is hidden.
- */
-.dialog-container[aria-hidden='true'] {
-  display: none; /* 1 */
-}
-
-/**
- * 1. Make the overlay look like an overlay.
- */
-.dialog-overlay {
-  background-color: rgba(43, 46, 56, 0.9); /* 1 */
-}
-
-/**
- * 1. Vertically and horizontally center the dialog in the page.
- * 2. Make sure the dialog sits on top of the overlay.
- * 3. Make sure the dialog has an opaque background.
- */
-.dialog-content {
-  margin: auto; /* 1 */
-  z-index: 2; /* 2 */
-  position: relative; /* 2 */
-  background-color: white; /* 3 */
-}
 
     @media (min-width: 768px) {
         .bakers {
@@ -137,11 +150,11 @@ import {BakerModal} from './BakerModal.jsx';
             display: flex;
 
             > * + * {
-                margin-left: 2rem;
+                margin-left: 5rem;
             }
 
             img {
-                max-width: 400px;
+                max-width: 385px;
             }
         }
     }

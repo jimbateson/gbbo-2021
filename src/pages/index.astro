@@ -72,23 +72,40 @@ let title = 'GBBO 2021';
             }
         }, { passive: true });
 
-        // let images = gsap.utils.toArray('.bakers-item');
-        // images.forEach((el) => {
-        //     gsap.from(el, {
-        //         opacity: 0,
-        //         yPercent: 10,
-        //         scale: 0,
-        //         duration: 1,
-        //         ease: 'back',
-        //         scrollTrigger: {
-        //         trigger: el,
-        //         start: 'top bottom',
-        //         end: 'bottom top',
-        //         //markers: true,
-        //         toggleActions: 'restart pause resume pause'
-        //         }
-        //     });
-        // });
+        let images = gsap.utils.toArray('.image-wrap');
+        images.forEach((el) => {
+            gsap.from(el, {
+                opacity: 0,
+                yPercent: 10,
+                scale: 0,
+                duration: .85,
+                ease: 'back',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    toggleActions: 'restart pause resume pause',
+                    onLeaveBack: self => self.disable(),
+                }
+            });
+        });
+
+        let content = gsap.utils.toArray('.bakers-item__content');
+        content.forEach((content) => {
+            gsap.from(content, {
+                opacity: 0,
+                yPercent: 50,
+                duration: .65,
+                ease: 'back',
+                scrollTrigger: {
+                    trigger: content,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    toggleActions: 'restart pause resume pause',
+                    onLeaveBack: self => self.disable()
+                }
+            });
+        });
     </script>
 </body>
 </html>

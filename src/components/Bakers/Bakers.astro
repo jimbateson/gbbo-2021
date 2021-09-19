@@ -5,16 +5,16 @@ import {BakerModal} from './BakerModal.jsx';
 <ul class="bakers">
     {data.map((baker) => (
         <li class="bakers-item">
-            <div class="image-wrap">
+            <div class="image-wrap" opacity="0">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="decorative" aria-hidden="true" viewBox="0 0 133.9 97.5" overflow="visible"><defs><pattern x="-257.8" y="-219" width="8" height="8" patternUnits="userSpaceOnUse" id="dot-pattern" viewBox="0 -8 8 8" overflow="visible"><rect y="-8" width="8" height="8" fill="none"></rect><circle cx="4.3" cy="-4" r=".7" fill="var(--color-primary)" stroke="var(--color-primary)" stroke-miterlimit="10"></circle></pattern></defs><pattern id="SVGID_1_" xlink:href="#dot-pattern" patternTransform="translate(-1.3637 4.2113)"></pattern><rect width="133.9" height="90" fill="url(#SVGID_1_)"></rect></svg>
                 
                 <picture>
                     <source srcset={`/assets/${baker.bakerImage}.webp`} type="image/webp">
-                    <img src={`/assets/${baker.bakerImage}.jpg`} class="bakers-item__image" alt={`Profile picture of ${baker.bakerName}`} loading="lazy" width="385" height="385">
+                    <img src={`/assets/${baker.bakerImage}.jpg`} class="bakers-item__image js-baker-image" alt={`Profile picture of ${baker.bakerName}`} loading="lazy" width="385" height="385">
                 </picture>
             </div>
 
-            <div class="bakers-item__content">
+            <div class="bakers-item__content" opacity="0">
                 <h4>{baker.bakerName}, {baker.bakerAge}</h4>
                 <h5>{baker.bakerJob}</h5>
 
@@ -55,6 +55,10 @@ import {BakerModal} from './BakerModal.jsx';
     .bakers-item {
         border-radius: var(--base-radius);
         padding: 1rem;
+
+        + .bakers-item {
+            padding-top: 4.5rem;
+        }
     }
 
     .bakers-item__image {
@@ -92,7 +96,7 @@ import {BakerModal} from './BakerModal.jsx';
         p {
             font-weight: 600;
             margin-top: 1.5rem;
-            max-width: 35ch;
+            max-width: 45ch;
         }
     }
 

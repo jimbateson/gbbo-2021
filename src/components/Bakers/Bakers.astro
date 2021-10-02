@@ -3,7 +3,7 @@ import data from '../../data/bakers.json';
 ---
 <ul class="bakers">
     {data.map((baker) => (
-        <li class="bakers-item">
+        <li class={`bakers-item ${baker.bakerClass}`}>
             <div class="image-wrap" opacity="0">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="decorative" aria-hidden="true" viewBox="0 0 133.9 97.5" overflow="visible"><defs><pattern x="-257.8" y="-219" width="8" height="8" patternUnits="userSpaceOnUse" id="dot-pattern" viewBox="0 -8 8 8" overflow="visible"><rect y="-8" width="8" height="8" fill="none"></rect><circle cx="4.3" cy="-4" r=".7" fill="var(--color-primary)" stroke="var(--color-primary)" stroke-miterlimit="10"></circle></pattern></defs><pattern id="SVGID_1_" xlink:href="#dot-pattern" patternTransform="translate(-1.3637 4.2113)"></pattern><rect width="133.9" height="90" fill="url(#SVGID_1_)"></rect></svg>
                 
@@ -129,10 +129,10 @@ import data from '../../data/bakers.json';
         svg {
             border-radius: 50%;
             bottom: -2rem;
-            clip-path: url(#my-clip-path);
             position: absolute;
             right: -3rem;
-            width: 25rem
+            width: 100%;
+            height: 100%;
         }
     }
 
